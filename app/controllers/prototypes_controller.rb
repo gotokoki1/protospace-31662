@@ -51,10 +51,11 @@ class PrototypesController < ApplicationController
 
   def set_prototype
     @prototypes = Prototype.includes(:user)
+    @prototype = Prototype.find(params[:id])
   end
 
   def move_to_index
-    unless current_user.id == @prototypes.user_id
+    unless current_user.id == @prototype.user_id
      redirect_to action: :index
     end
   end
