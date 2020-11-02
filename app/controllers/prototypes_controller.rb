@@ -49,9 +49,6 @@ class PrototypesController < ApplicationController
     params.require(:prototype).permit(:title, :catch_copy, :concept, :image).merge(user_id: current_user.id)
   end
 
-  def authenticate_user!
-    redirect_to new_user_session_path
-  end
   def set_prototype
     @prototypes = Prototype.includes(:user)
     @prototype = Prototype.find_by(params[:prototype_id])
